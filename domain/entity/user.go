@@ -21,3 +21,10 @@ func (u *User) ChangeName(newName value_object.UserName) error {
 	u.userName = newName
 	return nil
 }
+
+func (u *User) Equal(arg *User) bool {
+	if arg == nil {
+		return false
+	}
+	return u.userID == arg.userID
+}

@@ -115,3 +115,70 @@ func TestUser_ChangeName(t *testing.T) {
 		})
 	}
 }
+
+func TestUser_Equal(t *testing.T) {
+	type fields struct {
+		userID   value_object.UserID
+		userName value_object.UserName
+	}
+	type args struct {
+		arg *User
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   bool
+	}{
+		{
+			name: "OK",
+			fields: fields{
+				userID:   "hoge-id",
+				userName: "hoge-name1",
+			},
+			args: args{
+				arg: &User{
+					userID:   "hoge-id",
+					userName: "hoge-name2",
+				},
+			},
+			want: true,
+		},
+		{
+			name: "NG",
+			fields: fields{
+				userID:   "hoge-id",
+				userName: "hoge-name",
+			},
+			args: args{
+				arg: nil,
+			},
+			want: false,
+		},
+		{
+			name: "NG2",
+			fields: fields{
+				userID:   "hoge-id",
+				userName: "hoge-name",
+			},
+			args: args{
+				arg: &User{
+					userID:   "hoge-id2",
+					userName: "hoge-name",
+				},
+			},
+			want: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			u := &User{
+				userID:   tt.fields.userID,
+				userName: tt.fields.userName,
+			}
+			if got := u.Equal(tt.args.arg); got != tt.want {
+				t.Errorf("Equal() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
