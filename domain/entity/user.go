@@ -13,3 +13,11 @@ func NewUser(userID value_object.UserID, userName value_object.UserName) (*User,
 	}
 	return &User{userID: userID, userName: userName}, nil
 }
+
+func (u *User) ChangeName(newName value_object.UserName) error {
+	if err := newName.Verify(); err != nil {
+		return err
+	}
+	u.userName = newName
+	return nil
+}
