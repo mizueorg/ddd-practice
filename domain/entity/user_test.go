@@ -1,15 +1,16 @@
 package entity
 
 import (
-	"github.com/trewanek-org/ddd-practice/domain/value_object"
 	"reflect"
 	"testing"
+
+	"github.com/trewanek-org/ddd-practice/domain/value"
 )
 
 func TestNewUser(t *testing.T) {
 	type args struct {
-		userID   value_object.UserID
-		userName value_object.UserName
+		userID   value.UserID
+		userName value.UserName
 	}
 	tests := []struct {
 		name    string
@@ -20,20 +21,20 @@ func TestNewUser(t *testing.T) {
 		{
 			name: "OK",
 			args: args{
-				userID:   value_object.UserID("hoge-id"),
-				userName: value_object.UserName("hoge-name"),
+				userID:   value.UserID("hoge-id"),
+				userName: value.UserName("hoge-name"),
 			},
 			want: &User{
-				userID:   value_object.UserID("hoge-id"),
-				userName: value_object.UserName("hoge-name"),
+				userID:   value.UserID("hoge-id"),
+				userName: value.UserName("hoge-name"),
 			},
 			wantErr: false,
 		},
 		{
 			name: "NG",
 			args: args{
-				userID:   value_object.UserID("hoge-id"),
-				userName: value_object.UserName("ho"),
+				userID:   value.UserID("hoge-id"),
+				userName: value.UserName("ho"),
 			},
 			want:    nil,
 			wantErr: true,
@@ -55,14 +56,14 @@ func TestNewUser(t *testing.T) {
 
 func TestUser_ChangeName(t *testing.T) {
 	type fields struct {
-		userID   value_object.UserID
-		userName value_object.UserName
+		userID   value.UserID
+		userName value.UserName
 	}
 	type args struct {
-		newName value_object.UserName
+		newName value.UserName
 	}
 	type want struct {
-		changedUserName value_object.UserName
+		changedUserName value.UserName
 	}
 	tests := []struct {
 		name    string
@@ -118,8 +119,8 @@ func TestUser_ChangeName(t *testing.T) {
 
 func TestUser_Equal(t *testing.T) {
 	type fields struct {
-		userID   value_object.UserID
-		userName value_object.UserName
+		userID   value.UserID
+		userName value.UserName
 	}
 	type args struct {
 		arg *User

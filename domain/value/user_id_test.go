@@ -1,31 +1,21 @@
-package value_object
+package value
 
 import "testing"
 
-func TestUserName_Verify(t *testing.T) {
+func TestUserID_Verify(t *testing.T) {
 	tests := []struct {
 		name    string
-		u       UserName
+		u       UserID
 		wantErr bool
 	}{
 		{
 			name:    "OK",
-			u:       "hog",
-			wantErr: false,
-		},
-		{
-			name:    "OK2",
-			u:       "みずし",
+			u:       "id1",
 			wantErr: false,
 		},
 		{
 			name:    "NG",
-			u:       "ho",
-			wantErr: true,
-		},
-		{
-			name:    "NG2",
-			u:       "みず",
+			u:       "",
 			wantErr: true,
 		},
 	}

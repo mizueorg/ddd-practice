@@ -1,4 +1,4 @@
-package value_object
+package value
 
 //go:generate stringer -type Currency ./currency.go
 type Currency int
