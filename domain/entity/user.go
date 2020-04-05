@@ -28,3 +28,11 @@ func (u *User) Equal(arg *User) bool {
 	}
 	return u.userID == arg.userID
 }
+
+func (u *User) UserID() value.UserID {
+	return u.userID
+}
+
+func (u *User) UserName() value.UserName {
+	return u.userName
+}
