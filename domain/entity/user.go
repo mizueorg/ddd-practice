@@ -8,6 +8,9 @@ type User struct {
 }
 
 func NewUser(userID value.UserID, userName value.UserName) (*User, error) {
+	if err := userID.Verify(); err != nil {
+		return nil, err
+	}
 	if err := userName.Verify(); err != nil {
 		return nil, err
 	}
