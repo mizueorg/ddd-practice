@@ -10,7 +10,7 @@ import (
 	"github.com/trewanek-org/ddd-practice/domain/value"
 )
 
-var userStore = make(map[value.UserName]*entity.User)
+var UserStore = make(map[value.UserName]*entity.User)
 
 func NewUser() repository.IUser {
 	return &user{}
@@ -20,12 +20,12 @@ type user struct{}
 
 func (u *user) Save(ctx context.Context, user *entity.User) error {
 	copied := *user
-	userStore[user.UserName()] = &copied
+	UserStore[user.UserName()] = &copied
 	return nil
 }
 
 func (u *user) Find(ctx context.Context, name value.UserName) (*entity.User, error) {
-	user := userStore[name]
+	user := UserStore[name]
 	if user == nil {
 		return nil, &domain.ErrNotFound{Msg: fmt.Sprintf("user not found error(user name: %v)", name)}
 	}

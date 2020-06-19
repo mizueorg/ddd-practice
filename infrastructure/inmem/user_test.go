@@ -17,7 +17,7 @@ func Test_user_Find(t *testing.T) {
 		t.Fail()
 	}
 
-	userStore[name] = testUser
+	UserStore[name] = testUser
 
 	repo := NewUser()
 	result, err := repo.Find(ctx, name)
@@ -53,7 +53,7 @@ func Test_user_Save(t *testing.T) {
 		t.Fail()
 	}
 
-	if userStore[name] == nil {
+	if UserStore[name] == nil {
 		t.Errorf("user store target user not found in store, name = %v", name)
 		t.Fail()
 	}
