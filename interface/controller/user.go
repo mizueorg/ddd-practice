@@ -2,10 +2,11 @@ package controller
 
 import (
 	"encoding/json"
-	"github.com/trewanek-org/ddd-practice/usecase"
 	"io/ioutil"
 	"log"
 	"net/http"
+
+	"github.com/trewanek-org/ddd-practice/usecase"
 )
 
 type User struct {

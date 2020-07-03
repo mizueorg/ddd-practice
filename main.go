@@ -2,8 +2,6 @@ package main
 
 import (
 	"bufio"
-	"context"
-	"fmt"
 	"log"
 	"net/http"
 	"os"

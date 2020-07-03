@@ -8,6 +8,7 @@ package di
 import (
 	"github.com/google/wire"
 	"github.com/trewanek-org/ddd-practice/domain/service"
+	"github.com/trewanek-org/ddd-practice/infrastructure/factory"
 	"github.com/trewanek-org/ddd-practice/infrastructure/inmem"
 	"github.com/trewanek-org/ddd-practice/usecase"
 )
@@ -15,14 +16,17 @@ import (
 // Injectors from wire.go:
 
 func GetUserUseCase() *usecase.User {
+	user := factory.NewUser()
 	iUser := inmem.NewUser()
-	user := service.NewUser(iUser)
-	usecaseUser := usecase.NewUser(iUser, user)
+	serviceUser := service.NewUser(iUser)
+	usecaseUser := usecase.NewUser(user, iUser, serviceUser)
 	return usecaseUser
 }
 
 // wire.go:
 
 var serviceSet = wire.NewSet(service.NewUser)
+
+var factorySet = wire.NewSet(factory.NewUser)
 
 var inMemRepositorySet = wire.NewSet(inmem.NewUser)
